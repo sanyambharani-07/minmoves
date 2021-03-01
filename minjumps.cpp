@@ -36,30 +36,30 @@ template<class T> void chmin(T & a, const T & b) { a = min(a, b); }
 ///////////////////////////////////////////////////////////////////// 
 int canJump(vector<int>& arr) {
        //minimize the number of jumps
-       int n =arr.size();
-        if(n<=1){
-            return 0;
-        }
-        pair<int,int> interval{0,0};
-        int jumps = 0;
-        while(true){
-            jumps++; //jumps will store the minimum jumps to reach last airport
-            int can_reach = -1;
-            for(int i=interval.first;i<=interval.second;i++){
-              can_reach = max(can_reach,i+arr[i]); //maximum airport you can reach from the current fuel
-            }
-            if(can_reach>=n-1){
-                break;//Reached to last airport
-            }
-            interval = {interval.second+1,can_reach};
-            if(interval.first>interval.second){
-                return -1;//we cannot reach 
-            }
-        }
-      
-        return jumps;
+	int n =arr.size();
+	if(n<=1){
+		return 0;
+	}
+	pair<int,int> interval{0,0};
+	int jumps = 0;
+	while(true){
+		jumps++; //jumps will store the minimum jumps to reach last airport
+		int can_reach = -1;
+		for(int i=interval.first;i<=interval.second;i++){
+		  can_reach = max(can_reach,i+arr[i]); //maximum airport you can reach from the current fuel
+		}
+		if(can_reach>=n-1){
+			break;//Reached to last airport
+		}
+		interval = {interval.second+1,can_reach};
+		if(interval.first>interval.second){
+			return -1;//we cannot reach 
+		}
+	}
+  
+	return jumps;
     
-    }
+}
 int main(){ 
  
 	ios_base::sync_with_stdio(false); 
@@ -70,7 +70,6 @@ int main(){
     for(int i=0;i<n;i++){
 		cin>>arr[i];
 	}
-	cout<<endl;
 	cout<<canJump(arr);	
     return 0; 
     
